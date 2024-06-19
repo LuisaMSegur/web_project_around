@@ -1,0 +1,12 @@
+.header {
+    width: 882px;
+    border-bottom-color: #545454 solid;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin: 0 auto;
+}
+
+.header.logo {
+    max-width: 173px;
+
+}
