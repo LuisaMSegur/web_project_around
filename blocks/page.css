@@ -1,5 +1,7 @@
 * {
-    margin: 0;
+    margin: 0 auto;
+    font-family: "Inter-Regular";
+    background-color: black;
 }
 
 .page {
