@@ -1,0 +1,60 @@
+.cards {
+    margin: 0 auto;
+    display: flex;
+    max-width: 100%;
+}
+
+.cards__places {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-template-rows: repeat(2, 2fr);
+    grid-row-gap: 40px;
+    grid-column-gap: 40px;
+    padding: 100px 0 0 0;
+}
+
+.cards__place {
+    background-color: white;
+    border-radius: 15px 15px 15px 15px;
+    max-width: 282px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.cards__photo {
+    width: 282px;
+    height: 282px;
+    border-radius: 15px 15px 0 0;
+}
+
+.cards__button-trash {
+    background-color: transparent;
+    border: 0;
+}
+
+.cards__button-trash_image {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.cards__name-place {
+    font-size: 24px;
+    font-weight: 900;
+    background-color: white;
+    padding-left: 10px;
+}
+
+.cards__button-love {
+    background-color: transparent;
+    border: 0;
+}
+
+.cards__button-love_image {
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+}
