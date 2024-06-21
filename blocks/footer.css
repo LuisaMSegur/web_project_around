@@ -1,0 +1,9 @@
+.footer {
+    padding: 150px 0 100px 80px;
+}
+
+.footer__name {
+    color: #545454;
+    font-size: 18px;
+    font-weight: 100;
+}
