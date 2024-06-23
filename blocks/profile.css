@@ -70,15 +70,45 @@
     opacity: 30%;
 }
 
-@media screen and (min-width:700px) and (max-width:1100px) {
+
+@media screen and (min-width:650px) and (max-width:1100px) {
     .profile {
+        grid-template-columns: 120px auto;
+        grid-template-rows: repeat(3, 60px);
         grid-template-areas:
-            "photo info ."
-            "photo info add";
+            "photo info"
+            "photo ."
+            ". add"
     }
 
-
-    .profile__button-add_card {
-        padding-top: 50px;
+    .profile__button-add {
+        display: flex;
+        justify-content: end;
     }
+
+}
+
+@media screen and (min-width:320px) and (max-width:649px) {
+    .profile {
+        grid-template-columns: 1fr;
+        grid-template-rows: 120px auto 1fr;
+        grid-template-areas:
+            "photo"
+            "info"
+            "add"
+    }
+
+    .profile__photo {
+        margin: 0 auto;
+    }
+
+    .profile__info {
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+
+    .profile__subtitle {
+        text-align: center;
+    }
+
 }
