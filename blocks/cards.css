@@ -9,8 +9,8 @@
     display: grid;
     grid-template-columns: repeat(3, 3fr);
     grid-template-rows: repeat(2, 2fr);
-    grid-row-gap: 40px;
-    grid-column-gap: 40px;
+    grid-row-gap: 30px;
+    grid-column-gap: 30px;
     padding: 100px 0 0 0;
 }
 
@@ -41,6 +41,10 @@
     padding: 0;
 }
 
+.cards__button-trash_image:hover {
+    opacity: 20%;
+}
+
 .cards__name-place {
     font-size: 24px;
     font-weight: 900;
@@ -53,8 +57,21 @@
     border: 0;
 }
 
+
 .cards__button-love_image {
     position: absolute;
     bottom: 25px;
     right: 15px;
+}
+
+.cards__button-love_image:hover {
+    opacity: 20%;
+}
+
+@media screen and (min-width:600px) and (max-width:1100px) {
+    .cards__places {
+        display: grid;
+        grid-template-columns: repeat(2, 2fr);
+        grid-template-rows: repeat(3, 3fr);
+    }
 }
