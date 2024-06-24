@@ -104,11 +104,24 @@
 
     .profile__info {
         justify-content: center;
+        padding: 0;
+        margin: 0 auto;
         padding-bottom: 20px;
+        max-width: 300px;
+    }
+
+    .profile__title {
+        font-size: 28px;
+        padding-right: 10px;
     }
 
     .profile__subtitle {
         text-align: center;
     }
+
+    .profile__button {
+        padding: 0;
+    }
+
 
 }
