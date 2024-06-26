@@ -1,5 +1,9 @@
 @font-face {
     src: url("../vendor/fonts/InterDisplay-Regular.woff2") format("woff2");
     font-family: "Inter-Regular";
-    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter-Black";
+    src: url("../vendor/fonts/Inter-Black.woff2");
 }
