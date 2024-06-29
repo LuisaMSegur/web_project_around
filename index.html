@@ -13,26 +13,28 @@
 
 <body>
     <div class="page">
-        <header class="header">
-            <img src="images/Vector.png" alt="logo around USA" class="header__logo">
-        </header>
         <div class="popup">
             <div class="popup__container">
-                <button class="popup__close" type="button">
-                    <img src="/images/Close Icon.png" alt="close icon">
-                </button>
                 <form class="popup__form">
+                    <button class="popup__close" type="button">
+                        <img src="/images/Close Icon.png" alt="close icon" class="popup__close_icon">
+                    </button>
                     <h2 class="popup__title">Editar Perfil</h2>
                     <fieldset class="popup__name">
-                        <input type="text" name="name" placeholder="Nombre" class="popup__name popup__name_new" required id="name">
+                        <input type="text" name="name" placeholder="Nombre" class="popup__name popup__name_new" required
+                            id="name">
                     </fieldset>
                     <fieldset class="popup__aboutme">
-                        <input type="text" name="about me" placeholder="Acerca de mi" class="popup__aboutme popup__aboutme_new" required id="aboutme">
+                        <input type="text" name="about" placeholder="Acerca de mi"
+                            class="popup__aboutme popup__aboutme_new" required id="aboutme">
                     </fieldset>
                     <button class="popup__botton-submit" type="submit">Guardar</button>
                 </form>
             </div>
         </div>
+        <header class="header">
+            <img src="images/Vector.png" alt="logo around USA" class="header__logo">
+        </header>
         <main class="content">
 
             <section class="profile">
@@ -138,6 +140,7 @@
             <h3 class="footer__name">2024 Luisa M. Seguro</h3>
         </footer>
     </div>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>
