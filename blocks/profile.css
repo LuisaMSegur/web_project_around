@@ -6,7 +6,7 @@
     grid-template-rows: auto auto;
     grid-template-areas:
         "photo info add"
-        "photo info ."
+        "photo info .";
 }
 
 .profile__photo {
@@ -79,7 +79,7 @@
         grid-template-areas:
             "photo info"
             "photo ."
-            ". add"
+            ". add";
     }
 
     .profile__button-add {
@@ -96,7 +96,7 @@
         grid-template-areas:
             "photo"
             "info"
-            "add"
+            "add";
     }
 
     .profile__photo {
