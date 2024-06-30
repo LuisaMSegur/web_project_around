@@ -3,10 +3,10 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 120px auto 160px;
-    grid-template-rows: repeat(2, 60px);
+    grid-template-rows: auto auto;
     grid-template-areas:
         "photo info add"
-        "photo . ."
+        "photo info ."
 }
 
 .profile__photo {
@@ -21,6 +21,7 @@
     padding: 15px 0 0 25px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .profile__title {
