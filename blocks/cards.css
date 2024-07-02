@@ -1,16 +1,15 @@
 .cards {
-    margin: 0 auto;
+    margin: 0;
     display: flex;
-    max-width: 100%;
 }
 
 .cards__places {
-    margin: 0 auto;
+    margin: 0;
     display: grid;
     grid-template-columns: repeat(3, 3fr);
     grid-template-rows: repeat(2, 2fr);
-    grid-row-gap: 30px;
-    grid-column-gap: 30px;
+    grid-row-gap: 45px;
+    grid-column-gap: 45px;
     padding: 100px 0 0 0;
 }
 
@@ -26,8 +25,8 @@
 }
 
 .cards__photo {
-    width: 282px;
-    height: 282px;
+    width: 295px;
+    height: 295px;
     border-radius: 15px 15px 0 0;
 }
 
