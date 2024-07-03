@@ -1,9 +1,9 @@
 .header {
-    max-width: 90%;
+    max-width: 100%;
     border-bottom-color: #545454;
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    margin: 35px auto;
+    margin: 35px 100px;
 }
 
 .header__logo {
@@ -11,9 +11,20 @@
     margin-bottom: 35px;
 }
 
-@media screen and (min-width:320px) and (max-width:450px) {
+@media screen and (min-width:320px) and (max-width:600px) {
+    .header {
+        margin: 30px 30px
+    }
+
     .header__logo {
         max-width: 100px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+    .header {
+        margin: 30px 70px;
     }
 
 }

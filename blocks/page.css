@@ -8,11 +8,13 @@
     max-width: 1280px;
     margin: 0 auto;
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (min-width:320px) and (max-width:600px) {
     .page {
         max-width: 600px;
- }
-    
+    }
+
 }
