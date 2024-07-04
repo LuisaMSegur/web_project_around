@@ -23,7 +23,8 @@
     grid-area: title;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-left: 15px;
+    padding: 0 10px;
+    white-space: nowrap;
 }
 
 .profile__subtitle {
