@@ -1,8 +1,6 @@
 //llamado de clases del popup y función para editar texto del perfil
 
 let popUp = document.querySelector(".popup");
-let formContainer = document.querySelector(".popup__container");
-let formPopup = document.querySelector(".popup__form");
 let buttonEdit = document.querySelector(".profile__button");
 let textTitleProfile = document.querySelector(".profile__title");
 let textSubtitleProfile = document.querySelector(".profile__subtitle");
@@ -11,24 +9,22 @@ let inputName = document.getElementById("name");
 let inputAboutMe = document.getElementById("aboutme");
 let buttonSubmit = document.querySelector(".popup__botton-submit");
 
-
-function editTextProfile () {
+function editTextProfile() {
     popUp.classList.toggle("popup_open");
 
-inputName.value = textTitleProfile.textContent;
-inputAboutMe.value = textSubtitleProfile.textContent;
+    inputName.value = textTitleProfile.textContent;
+    inputAboutMe.value = textSubtitleProfile.textContent;
 }
 
-buttonEdit.addEventListener('click', editTextProfile);
-buttonClose.addEventListener('click', editTextProfile);
+buttonEdit.addEventListener("click", editTextProfile);
+buttonClose.addEventListener("click", editTextProfile);
 
 function handleProfileFormSubmit(evt) {
-evt.preventDefault();
+    evt.preventDefault();
 
-textTitleProfile.textContent =inputName.value;
-textSubtitleProfile.textContent =inputAboutMe.value;
-popUp.classList.toggle("popup_open");
-
+    textTitleProfile.textContent = inputName.value;
+    textSubtitleProfile.textContent = inputAboutMe.value;
+    popUp.classList.toggle("popup_open");
 }
 
-buttonSubmit.addEventListener('click', handleProfileFormSubmit);
+buttonSubmit.addEventListener("click", handleProfileFormSubmit);
