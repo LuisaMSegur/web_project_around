@@ -28,3 +28,20 @@ function handleProfileFormSubmit(evt) {
 }
 
 buttonSubmit.addEventListener("click", handleProfileFormSubmit);
+
+//llamado de clases del popup-add y función para abrir y cerrar el popup-add
+
+let popUpAdd = document.querySelector(".popup-add");
+let buttonAdd = document.querySelector(".profile__button-add");
+let buttonClosePopUp = document.querySelector(".popup-add__close");
+let inputPlace = document.getElementById("place");
+let inputAddUrlImage = document.getElementById("add-image");
+let buttonSubmitCard = document.querySelector(".popup-add__botton-submit");
+
+function openAndClosePopUp() {
+    popUpAdd.classList.toggle("popup-add_opened");
+    
+}
+
+buttonAdd.addEventListener("click", openAndClosePopUp);
+buttonClosePopUp.addEventListener("click", openAndClosePopUp);
