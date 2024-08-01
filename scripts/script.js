@@ -1,4 +1,4 @@
-//llamado de clases del popup y función para editar texto del perfil
+//llamado de clases del popup de editar perfil y función para editar texto del perfil
 
 let popUp = document.querySelector(".popup");
 let buttonEdit = document.querySelector(".profile__button");
@@ -31,17 +31,29 @@ buttonSubmit.addEventListener("click", handleProfileFormSubmit);
 
 //llamado de clases del popup-add y función para abrir y cerrar el popup-add
 
-let popUpAdd = document.querySelector(".popup-add");
-let buttonAdd = document.querySelector(".profile__button-add");
-let buttonClosePopUp = document.querySelector(".popup-add__close");
-let inputPlace = document.getElementById("place");
-let inputAddUrlImage = document.getElementById("add-image");
-let buttonSubmitCard = document.querySelector(".popup-add__botton-submit");
-
-function openAndClosePopUp() {
-    popUpAdd.classList.toggle("popup-add_opened");
-    
-}
-
-buttonAdd.addEventListener("click", openAndClosePopUp);
-buttonClosePopUp.addEventListener("click", openAndClosePopUp);
+const initialCards = [
+    {
+        name: "Valle de Yosemite",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+    },
+    {
+        name: "Lago Louise",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+    },
+    {
+        name: "Montañas Calvas",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+    },
+    {
+        name: "Latemar",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+    },
+    {
+        name: "Parque Nacional de la Vanoise",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+    },
+];
