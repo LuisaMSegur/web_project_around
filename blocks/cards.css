@@ -21,6 +21,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    display: none;
+}
+
+.card__place_open {
+    display: block;
 }
 
 .cards__photo {

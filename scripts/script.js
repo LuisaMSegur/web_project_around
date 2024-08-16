@@ -1,33 +1,32 @@
 //llamado de clases del popup de editar perfil y función para editar texto del perfil
 
-let popUp = document.querySelector(".popup");
-let buttonEdit = document.querySelector(".profile__button");
-let textTitleProfile = document.querySelector(".profile__title");
-let textSubtitleProfile = document.querySelector(".profile__subtitle");
-let buttonClose = document.querySelector(".popup__close");
-let inputName = document.getElementById("name");
-let inputAboutMe = document.getElementById("aboutme");
-let buttonSubmit = document.querySelector(".popup__botton-submit");
+const popUp = document.querySelector(".popup");
+const buttonEditProfile = document.querySelector(".profile__button");
+const formProfile = document.querySelector(".form");
+const textTitleProfile = document.querySelector(".profile__title");
+const textSubtitleProfile = document.querySelector(".profile__subtitle");
+const buttonClosePopUp = document.querySelector(".popup__close");
+const inputName = document.getElementById("#name");
+const inputAboutMe = document.getElementById("#aboutme");
+const buttonSubmit = document.querySelector(".form__submit");
 
-function editTextProfile() {
-    popUp.classList.toggle("popup_open");
-
-    inputName.value = textTitleProfile.textContent;
-    inputAboutMe.value = textSubtitleProfile.textContent;
+function openPopUpProfile() {
+    popUp.classList.add("popup_open");
 }
 
-buttonEdit.addEventListener("click", editTextProfile);
-buttonClose.addEventListener("click", editTextProfile);
+function closePopUpProfile() {
+    popUp.classList.remove("popup_open");
+}
 
-function handleProfileFormSubmit(evt) {
+buttonEditProfile.addEventListener("click", openPopUpProfile);
+buttonClosePopUp.addEventListener("click", closePopUpProfile);
+
+formProfile.addEventListener("submit", function (evt) {
     evt.preventDefault();
-
     textTitleProfile.textContent = inputName.value;
     textSubtitleProfile.textContent = inputAboutMe.value;
-    popUp.classList.toggle("popup_open");
-}
-
-buttonSubmit.addEventListener("click", handleProfileFormSubmit);
+    closePopUpProfile();
+});
 
 //llamado de clases del popup-add y función para abrir y cerrar el popup-add
 
@@ -57,3 +56,37 @@ const initialCards = [
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
     },
 ];
+
+let buttonAddCard = document.querySelector(".profile__button-add");
+let cards = document.querySelector(".cards");
+let cardsPlaces = document.querySelector(".cards__places");
+let cardPhoto = document.querySelector(".cards__photo");
+let cardNamePlace = document.querySelector(".cards__name-place");
+let template = document.querySelector("template").content;
+
+initialCards.forEach(function (item) {
+    const cloneTemplate = template.cloneNode(true);
+    cardsPlaces.append(cloneTemplate);
+});
+
+/*for (let i = 0; i < 6; i++) {
+  const contentCards = template.content.cloneNode(true);
+    cardsPlaces.appendChild(contentCards);
+}
+*/
+//function addCards(place, photo) {}
+
+/*let popUpAddCard = document.querySelector(".popup-add");
+let buttonAddCard = document.querySelector(".profile__button-add");
+let buttonClosePopUpAdd = document.querySelector(".popup-add__close");
+
+function openFormCard(evt) {
+    evt.preventDefault();
+    popUpAddCard.classList.add(".popup-add_open");
+}
+function closeFormCard() {
+    popUpAddCard.classList.remove(".pop-add_open");
+}
+
+buttonAddCard.addEventListener("click", openFormCard);
+buttonClosePopUpAdd.addEventListener("click", closeFormCard); */

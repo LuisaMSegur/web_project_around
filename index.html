@@ -14,43 +14,35 @@
 <body>
     <div class="page">
         <div class="popup">
-            <div class="popup__container">
-                <form class="popup__form">
-                    <button class="popup__close" type="button">
-                        <img src="./images/CloseIcon.png" alt="close icon" class="popup__close-icon">
-                    </button>
-                    <h2 class="popup__title">Editar Perfil</h2>
-                    <fieldset class="popup__name">
-                        <input type="text" name="name" placeholder="Nombre" class="popup__name popup__name_new" required
-                            id="name">
-                    </fieldset>
-                    <fieldset class="popup__aboutme">
-                        <input type="text" name="about" placeholder="Acerca de mi"
-                            class="popup__aboutme popup__aboutme_new" required id="aboutme">
-                    </fieldset>
-                    <button class="popup__botton-submit" type="submit">Guardar</button>
-                </form>
-            </div>
+            <form class="form">
+                <button class="popup__close" type="button">
+                    <img src="./images/CloseIcon.png" alt="close icon" class="popup__close-icon">
+                </button>
+                <h2 class="form__title">Editar Perfil</h2>
+                <input type="text" name="name" class="form__input" required id="name" value="Jacques Cousteau">
+                <input type="text" name="about" class="form__input" required id="aboutme" value="Explorador">
+                <button class="form__submit" type="submit">Guardar</button>
+            </form>
         </div>
-        <div class="popup" id="popUpAddCard">
-            <div class="popup__container">
-                <form class="popup__form">
-                    <button class="popup__close" type="button">
-                        <img src="./images/CloseIcon.png" alt="close icon" class="popup__close-icon">
+        <!--<div class="popup-add">
+            <div class="popup-add__container">
+                <form class="popup-add__form">
+                    <button class="popup-add__close" type="button">
+                        <img src="./images/CloseIcon.png" alt="close icon" class="popup-add__close-icon">
                     </button>
-                    <h2 class="popup__title">Nuevo Lugar</h2>
-                    <fieldset class="popup__place">
-                        <input type="text" name="place" placeholder="Titulo" class="popup__place popup__place_new"
-                            required id="place">
+                    <h2 class="popup-add__title">Nuevo Lugar</h2>
+                    <fieldset class="popup-add__place">
+                        <input type="text" name="place" placeholder="Titulo"
+                            class="popup-add__place popup-add__place_new" required id="place">
                     </fieldset>
-                    <fieldset class="popup__image">
+                    <fieldset class="popup-add__image">
                         <input type="text" name="add-image" placeholder="Enlace a la imagen"
-                            class="popup__image popup__image_new" required id="addImage">
+                            class="popup-add__image popup-add__image_new" required id="addImage">
                     </fieldset>
-                    <button class="popup__botton-submit" type="submit">Crear</button>
+                    <button class="popup-add__botton-submit" type="submit">Crear</button>
                 </form>
             </div>
-        </div>
+        </div>-->
         <header class="header">
             <img src="images/Vector.png" alt="logo around USA" class="header__logo">
         </header>
@@ -62,92 +54,25 @@
                     <img src="images/EditButton.png" alt="edit button" class="profile__button profile__button_edit">
                 </button>
                 <h2 class="profile__subtitle">Explorador</h2>
-                <button class="profile__button-add" id="buttonAddCard">
+                <button class="profile__button-add">
                     <img src="images/AddButton.png" alt="button add card"
                         class="profile__button-add profile__button-add_card">
                 </button>
             </section>
+            <template>
+                <li class="cards__place">
+                    <img src="" class="cards__photo">
+                    <button class="cards__button-trash">
+                        <img src="images/Trash.png" alt="trash" class="cards__button-trash cards__button-trash_image">
+                    </button>
+                    <p class="cards__name-place"></p>
+                    <button class="cards__button-love">
+                        <img src="images/corazon.png" alt="love" class="cards__button-love cards__button-love_image">
+                    </button>
+                </li>
+            </template>
             <section class="cards">
                 <ul class="cards__places">
-                    <li class="cards__place">
-                        <img src="images/ValleYosemite.jpg" alt="foto del Valle Yosemite" class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Valle Yosemite</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
-                    <li class="cards__place">
-                        <img src="images/LagoLouise.jpg" alt="foto del Lago Louise" class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Lago Louise</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
-                    <li class="cards__place">
-                        <img src="images/CurvadelaHerradura.jpg" alt="foto de Curva de la Herradura"
-                            class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Curva de la Herradura</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
-                    <li class="cards__place">
-                        <img src="images/4Latemar.png" alt="foto de Latemar" class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Latemar</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
-                    <li class="cards__place">
-                        <img src="images/5VanoisNational.png" alt="foto de Vanois National park" class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Vanois National Park</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
-                    <li class="cards__place">
-                        <img src="images/LagoMichigan.jpg" alt="foto del Lago Michigan" class="cards__photo">
-                        <button class="cards__button-trash">
-                            <img src="images/Trash.png" alt="trash"
-                                class="cards__button-trash cards__button-trash_image">
-                        </button>
-                        <p class="cards__name-place">Lago Michigan</p>
-                        <button class="cards__button-love">
-                            <img src="images/corazon.png" alt="love"
-                                class="cards__button-love cards__button-love_image">
-                        </button>
-                    </li>
-
                 </ul>
             </section>
         </main>

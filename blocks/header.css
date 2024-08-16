@@ -1,5 +1,5 @@
 .header {
-    max-width: 100%;
+    width: 100%;
     border-bottom-color: #545454;
     border-bottom-style: solid;
     border-bottom-width: 1px;
@@ -8,7 +8,7 @@
 
 .header__logo {
     max-width: 173px;
-    margin-bottom: 35px;
+    padding: 35px;
 }
 
 @media screen and (min-width:320px) and (max-width:600px) {
