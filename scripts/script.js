@@ -6,8 +6,8 @@ const formProfile = document.querySelector(".form");
 const textTitleProfile = document.querySelector(".profile__title");
 const textSubtitleProfile = document.querySelector(".profile__subtitle");
 const buttonClosePopUp = document.querySelector(".popup__close");
-const inputName = document.getElementById("#name");
-const inputAboutMe = document.getElementById("#aboutme");
+const inputName = document.querySelector("#name");
+const inputAboutMe = document.querySelector("#aboutme");
 const buttonSubmit = document.querySelector(".form__submit");
 
 function openPopUpProfile() {
@@ -21,15 +21,19 @@ function closePopUpProfile() {
 buttonEditProfile.addEventListener("click", openPopUpProfile);
 buttonClosePopUp.addEventListener("click", closePopUpProfile);
 
-formProfile.addEventListener("submit", function (evt) {
+function handleFormPopUp(evt) {
     evt.preventDefault();
     textTitleProfile.textContent = inputName.value;
     textSubtitleProfile.textContent = inputAboutMe.value;
-    closePopUpProfile();
-});
+}
+formProfile.addEventListener("submit", handleFormPopUp);
+
+buttonSubmit.addEventListener("click", closePopUpProfile);
 
 //llamado de clases del popup-add y función para abrir y cerrar el popup-add
 
+const cardTemplate = document.querySelector("#card-template").content;
+const cardsArea = document.querySelector(".cards");
 const initialCards = [
     {
         name: "Valle de Yosemite",
@@ -57,36 +61,15 @@ const initialCards = [
     },
 ];
 
-let buttonAddCard = document.querySelector(".profile__button-add");
-let cards = document.querySelector(".cards");
-let cardsPlaces = document.querySelector(".cards__places");
-let cardPhoto = document.querySelector(".cards__photo");
-let cardNamePlace = document.querySelector(".cards__name-place");
-let template = document.querySelector("template").content;
+function createCard(title, link) {
+    const card = cardTemplate.querySelector(".card").cloneNode(true);
+    const cardTitle = document.querySelector(".card__name-place");
+    const cardImage = document.querySelector(".card__photo");
+    cardImage.src = link;
+    cardTitle.textContent = title;
+    cardsArea.append(card);
+}
 
 initialCards.forEach(function (item) {
-    const cloneTemplate = template.cloneNode(true);
-    cardsPlaces.append(cloneTemplate);
+    createCard(item.name, item.link);
 });
-
-/*for (let i = 0; i < 6; i++) {
-  const contentCards = template.content.cloneNode(true);
-    cardsPlaces.appendChild(contentCards);
-}
-*/
-//function addCards(place, photo) {}
-
-/*let popUpAddCard = document.querySelector(".popup-add");
-let buttonAddCard = document.querySelector(".profile__button-add");
-let buttonClosePopUpAdd = document.querySelector(".popup-add__close");
-
-function openFormCard(evt) {
-    evt.preventDefault();
-    popUpAddCard.classList.add(".popup-add_open");
-}
-function closeFormCard() {
-    popUpAddCard.classList.remove(".pop-add_open");
-}
-
-buttonAddCard.addEventListener("click", openFormCard);
-buttonClosePopUpAdd.addEventListener("click", closeFormCard); */

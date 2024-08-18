@@ -19,8 +19,8 @@
                     <img src="./images/CloseIcon.png" alt="close icon" class="popup__close-icon">
                 </button>
                 <h2 class="form__title">Editar Perfil</h2>
-                <input type="text" name="name" class="form__input" required id="name" value="Jacques Cousteau">
-                <input type="text" name="about" class="form__input" required id="aboutme" value="Explorador">
+                <input type="text" name="name" class="form__input" id="name" placeholder="Jacques Cousteau">
+                <input type="text" name="about" class="form__input" id="aboutme" placeholder="Explorador">
                 <button class="form__submit" type="submit">Guardar</button>
             </form>
         </div>
@@ -59,27 +59,25 @@
                         class="profile__button-add profile__button-add_card">
                 </button>
             </section>
-            <template>
-                <li class="cards__place">
-                    <img src="" class="cards__photo">
-                    <button class="cards__button-trash">
-                        <img src="images/Trash.png" alt="trash" class="cards__button-trash cards__button-trash_image">
-                    </button>
-                    <p class="cards__name-place"></p>
-                    <button class="cards__button-love">
-                        <img src="images/corazon.png" alt="love" class="cards__button-love cards__button-love_image">
-                    </button>
-                </li>
-            </template>
-            <section class="cards">
-                <ul class="cards__places">
-                </ul>
-            </section>
+            <section class="cards"></section>
         </main>
         <footer class="footer">
             <h3 class="footer__name">2024 Luisa M. Seguro</h3>
         </footer>
     </div>
+    <template id="card-template">
+        <div class="card">
+            <img src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg"
+                class="card__photo">
+            <button class="card__button-trash">
+                <img src="images/Trash.png" alt="trash" class="card__button-trash card__button-trash_image">
+            </button>
+            <p class="card__name-place">Valle de Yosemite</p>
+            <button class="card__button-love">
+                <img src="images/corazon.png" alt="love" class="card__button-love card__button-love_image">
+            </button>
+        </div>
+    </template>
     <script src="scripts/script.js"></script>
 </body>
 

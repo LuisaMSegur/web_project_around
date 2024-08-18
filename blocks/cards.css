@@ -1,9 +1,5 @@
 .cards {
     margin: 0;
-}
-
-.cards__places {
-    margin: 0;
     display: grid;
     grid-template-columns: repeat(3, 3fr);
     grid-template-rows: repeat(2, 2fr);
@@ -12,7 +8,8 @@
     padding: 100px 0 0 0;
 }
 
-.cards__place {
+
+.card {
     background-color: white;
     border-radius: 15px 15px 15px 15px;
     max-width: 282px;
@@ -21,25 +18,20 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    display: none;
 }
 
-.card__place_open {
-    display: block;
-}
-
-.cards__photo {
+.card__photo {
     width: 295px;
     height: 295px;
     border-radius: 15px 15px 0 0;
 }
 
-.cards__button-trash {
+.card__button-trash {
     background-color: transparent;
     border: 0;
 }
 
-.cards__button-trash_image {
+.card__button-trash_image {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -47,11 +39,11 @@
     padding: 0;
 }
 
-.cards__button-trash_image:hover {
+.card__button-trash_image:hover {
     opacity: 20%;
 }
 
-.cards__name-place {
+.card__name-place {
     font-size: 24px;
     font-weight: 900;
     background-color: white;
@@ -59,29 +51,25 @@
     padding-top: 15px;
 }
 
-.cards__button-love {
+.card__button-love {
     background-color: transparent;
     border: 0;
 }
 
 
-.cards__button-love_image {
+.card__button-love_image {
     position: absolute;
     bottom: 25px;
     right: 15px;
 }
 
-.cards__button-love_image:hover {
+.card__button-love_image:hover {
     opacity: 20%;
 }
 
 @media screen and (min-width:650px) and (max-width:1000px) {
-    .cards {
-        display: flex;
-        justify-content: center;
-    }
 
-    .cards__places {
+    .cards {
         display: grid;
         grid-template-columns: repeat(2, 2fr);
         grid-template-rows: repeat(3, 3fr);
@@ -92,11 +80,6 @@
 
 @media screen and (min-width:320px) and (max-width:649px) {
     .cards {
-        display: flex;
-        justify-content: center;
-    }
-
-    .cards__places {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, 1fr);
