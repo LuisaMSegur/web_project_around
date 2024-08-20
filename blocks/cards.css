@@ -20,6 +20,8 @@
     overflow: hidden;
 }
 
+
+
 .card__photo {
     width: 295px;
     height: 295px;
@@ -29,9 +31,16 @@
 .card__button-trash {
     background-color: transparent;
     border: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 .card__button-trash_image {
+    background-color: transparent;
+    border: 0;
     position: absolute;
     top: 15px;
     right: 15px;
@@ -52,20 +61,24 @@
 }
 
 .card__button-love {
-    background-color: transparent;
     border: 0;
-}
-
-
-.card__button-love_image {
+    width: 20px;
+    height: 20px;
     position: absolute;
-    bottom: 25px;
+    bottom: 15px;
     right: 15px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-size: contain;
+    padding: 0;
+    background-image: url("/images/corazonblanco.jpg");
 }
 
-.card__button-love_image:hover {
-    opacity: 20%;
+
+.card__button-love_active {
+    background-image: url("/images/corazonnegro.jpg");
 }
+
 
 @media screen and (min-width:650px) and (max-width:1000px) {
 
