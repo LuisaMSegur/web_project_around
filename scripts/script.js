@@ -1,4 +1,4 @@
-//abrir y cerrar el popup, función para editar el perfil
+//abrir y cerrar el popup del perfil, función para editar el perfil
 
 const popUp = document.querySelector("#popup-profile");
 const buttonEditProfile = document.querySelector(".profile__button");
@@ -29,7 +29,7 @@ function handleFormPopUp(evt) {
 formProfile.addEventListener("submit", handleFormPopUp);
 buttonSubmit.addEventListener("click", closePopUpProfile);
 
-//desplegar cartas iniciales y funcion crear carta
+//desplegar cartas iniciales y funcion crear carta, dar like, eliminar carta y abrir imagen grande
 
 const cardTemplate = document.querySelector("#card-template").content;
 const cardsArea = document.querySelector(".cards");
@@ -65,8 +65,16 @@ function createCard(title, link) {
     const cardTitle = card.querySelector(".card__name-place");
     const cardImage = card.querySelector(".card__photo");
     const buttonLikeCard = card.querySelector(".card__button-love");
+    const buttonDeleteCard = card.querySelector(".card__button-trash");
     buttonLikeCard.addEventListener("click", function () {
-        buttonLikeCard.classList.add(".card__button-love_active");
+        buttonLikeCard.classList.toggle("card__button-love_active");
+    });
+    buttonDeleteCard.addEventListener("click", function () {
+        const cardItem = buttonDeleteCard.closest(".card");
+        cardItem.remove();
+    });
+    cardImage.addEventListener("click", function () {
+        openPopUpImage(title, link);
     });
     cardImage.src = link;
     cardTitle.textContent = title;
@@ -78,14 +86,14 @@ initialCards.forEach(function (item) {
     cardsArea.append(newCard);
 });
 
-//formulario para crear cartas
+//formulario para generar las cartas nuevas
 
 const popUpCard = document.querySelector("#popup-card");
 const buttonAddCard = document.querySelector(".profile__button-add");
-const buttonClosePopUpCard = document.querySelector("#popup-button-close");
 const formAddCard = document.querySelector("#form-card");
 const inputNameCard = document.querySelector("#input-place");
 const inputImageCard = document.querySelector("#input-image");
+const buttonCloseFormCard = popUpCard.querySelector(".popup__close");
 
 function openPopUpCard() {
     popUpCard.classList.add("popup_open");
@@ -96,7 +104,7 @@ function closePopUpCard() {
 }
 
 buttonAddCard.addEventListener("click", openPopUpCard);
-buttonClosePopUpCard.addEventListener("click", closePopUpCard);
+buttonCloseFormCard.addEventListener("click", closePopUpCard);
 
 formAddCard.addEventListener("submit", function (evt) {
     evt.preventDefault();
@@ -105,13 +113,21 @@ formAddCard.addEventListener("submit", function (evt) {
     closePopUpCard();
 });
 
-//boton de basura, funcion para eliminar tarjeta
+//abrir imagen de tarjeta
 
-const buttonDeleteCard = document.querySelector(".card__button-trash");
+const popUpImage = document.querySelector("#popup-image");
+const popUpImageSrc = document.querySelector(".popup__photo");
+const PopUpTitleImage = document.querySelector(".popup__photo-title");
+const buttonCloseImage = document.querySelector("#close-image");
 
-function deleteCard() {
-    const card = buttonDeleteCard.closest(".card");
-    card.remove();
+function openPopUpImage(title, link) {
+    popUpImage.classList.add("popup_open");
+    PopUpTitleImage.textContent = title;
+    popUpImageSrc.src = link;
 }
 
-buttonDeleteCard.addEventListener("click", deleteCard);
+function closePopUpImage() {
+    popUpImage.classList.remove("popup_open");
+}
+
+buttonCloseImage.addEventListener("click", closePopUpImage);

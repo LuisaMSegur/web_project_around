@@ -20,7 +20,16 @@
     overflow: hidden;
 }
 
-
+.card__name-place {
+    font-size: 24px;
+    font-weight: 900;
+    max-width: 210px;
+    background-color: white;
+    margin: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
 .card__photo {
     width: 295px;
@@ -29,54 +38,46 @@
 }
 
 .card__button-trash {
-    background-color: transparent;
-    border: 0;
+    background-image: url(../images/Trash.png);
+    width: 25px;
+    height: 25px;
     position: absolute;
     top: 15px;
     right: 15px;
     margin: 0;
     padding: 0;
-}
-
-.card__button-trash_image {
-    background-color: transparent;
     border: 0;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    margin: 0;
-    padding: 0;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.card__button-trash_image:hover {
+.card__button-trash:hover {
     opacity: 20%;
 }
 
-.card__name-place {
-    font-size: 24px;
-    font-weight: 900;
-    background-color: white;
-    padding-left: 10px;
-    padding-top: 15px;
-}
 
 .card__button-love {
-    border: 0;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
+    background-image: url("../images/corazonblanco.jpg");
     position: absolute;
     bottom: 15px;
-    right: 15px;
-    background-repeat: no-repeat;
+    right: 20px;
+    border: 0;
+    background-repeat: round;
     cursor: pointer;
     background-size: contain;
     padding: 0;
-    background-image: url("/images/corazonblanco.jpg");
+
 }
 
+.card__button-love:hover {
+    opacity: 20%;
+}
 
 .card__button-love_active {
-    background-image: url("/images/corazonnegro.jpg");
+    background-image: url("../images/corazonnegro.jpg");
 }
 
 
