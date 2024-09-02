@@ -12,10 +12,14 @@ const buttonSubmit = document.querySelector(".form__submit");
 
 function openPopUpProfile() {
     popUp.classList.add("popup_open");
+    document.addEventListener("keydown", closeOnEsc);
+    document.addEventListener("click", closeClickOutForm);
 }
 
 function closePopUpProfile() {
     popUp.classList.remove("popup_open");
+    document.removeEventListener("keydown", closeOnEsc);
+    document.removeEventListener("click", closeClickOutForm);
 }
 
 buttonEditProfile.addEventListener("click", openPopUpProfile);
@@ -97,10 +101,14 @@ const buttonCloseFormCard = popUpCard.querySelector(".popup__close");
 
 function openPopUpCard() {
     popUpCard.classList.add("popup_open");
+    document.addEventListener("keydown", closeOnEsc);
+    document.addEventListener("click", closeClickOutForm);
 }
 
 function closePopUpCard() {
     popUpCard.classList.remove("popup_open");
+    document.removeEventListener("keydown", closeOnEsc);
+    document.removeEventListener("click", closeClickOutForm);
 }
 
 buttonAddCard.addEventListener("click", openPopUpCard);
@@ -124,10 +132,32 @@ function openPopUpImage(title, link) {
     popUpImage.classList.add("popup_open");
     PopUpTitleImage.textContent = title;
     popUpImageSrc.src = link;
+    document.addEventListener("keydown", closeOnEsc);
+    document.addEventListener("click", closeClickOutForm);
 }
 
 function closePopUpImage() {
     popUpImage.classList.remove("popup_open");
+    document.removeEventListener("keydown", closeOnEsc);
+    document.removeEventListener("click", closeClickOutForm);
 }
 
 buttonCloseImage.addEventListener("click", closePopUpImage);
+
+//cerrar popup con la tecla esc y con click fuera del formulario o imagen
+
+const closeOnEsc = (evt) => {
+    if (evt.key === "Escape") {
+        closePopUpCard();
+        closePopUpProfile();
+        closePopUpImage();
+    }
+};
+
+const closeClickOutForm = (evt) => {
+    if (evt.target.classList.contains("popup_open")) {
+        closePopUpCard();
+        closePopUpProfile();
+        closePopUpImage();
+    }
+};

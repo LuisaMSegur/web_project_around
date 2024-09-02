@@ -17,8 +17,26 @@
             <form class="form" id="form-profile">
                 <img src="./images/CloseIcon.png" alt="close icon" class="popup__close">
                 <h2 class="form__title">Editar Perfil</h2>
-                <input type="text" name="name" class="form__input" id="name" placeholder="Jacques Cousteau">
-                <input type="text" name="about" class="form__input" id="aboutme" placeholder="Explorador">
+                <input 
+                type="text" 
+                name="name"
+                minlength="2"
+                maxlength="40" 
+                class="form__input" 
+                id="name" 
+                placeholder="Jacques Cousteau"
+                required/>
+                <span class="form__input-error" id="name-error"></span>
+                <input 
+                type="text" 
+                name="about"
+                minlength="2"
+                maxlength="200" 
+                class="form__input" 
+                id="aboutme" 
+                placeholder="Explorador"
+                required/>
+                <span class="form__input-error" id="aboutme-error"></span>
                 <button class="form__submit" type="submit">Guardar</button>
             </form>
         </div>
@@ -26,8 +44,25 @@
             <form class="form" id="form-card">
                 <img src="./images/CloseIcon.png" alt="close icon" class="popup__close">
                 <h2 class="form__title">Nuevo Lugar</h2>
-                <input type="text" name="title" placeholder="Titulo" class="form__input" id="input-place">
-                <input type="text" name="link" placeholder="Enlace a la imagen" class="form__input" id="input-image">
+                <input 
+                type="text" 
+                name="title"
+                minlength="2"
+                maxlength="40" 
+                placeholder="Titulo" 
+                class="form__input" 
+                id="input-place"/>
+                <span class="form__input-error" id="input-place-error"></span>
+
+                <input 
+                type="url" 
+                name="link" 
+                placeholder="Enlace a la imagen" 
+                class="form__input" 
+                id="input-image"
+                required/>
+                <span class="form__input-error" id="input-image-error"></span>
+
                 <button class="form__submit" type="submit">Crear</button>
             </form>
         </div>
@@ -70,6 +105,7 @@
         </div>
     </template>
     <script src="scripts/script.js"></script>
+    <script src="scripts/validation.js"></script>
 </body>
 
 </html>
