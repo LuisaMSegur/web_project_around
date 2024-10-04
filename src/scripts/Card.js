@@ -1,8 +1,9 @@
 const cardTemplate = document.querySelector("#card-template").content;
 
 export default class Card {
-    constructor(title, link) {
+    constructor(title, link, handleClickImage) {
         (this.title = title), (this.link = link);
+        this.handleClickImage = handleClickImage;
     }
 
     getTemplate() {
@@ -42,7 +43,6 @@ export default class Card {
             this.closeClickOutForm(popUpImage, evt)
         );
     }
-
     closePopUpImage() {
         const popUpImage = document.querySelector("#popup-image");
         popUpImage.classList.remove("popup_open");
@@ -58,7 +58,7 @@ export default class Card {
             this.removeCard();
         });
         this.cardImage.addEventListener("click", () => {
-            this.openPopUpImage();
+            this.handleClickImage();
         });
     }
 

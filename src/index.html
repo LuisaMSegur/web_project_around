@@ -8,14 +8,13 @@
     <meta name="author" content="Luisa M. Seguro">
     <meta name="description" content="lugares que puedes visitar alrededor de Estados Unidos">
     <meta name="keywords" content="EE.UU, galeria, lugares, naturaleza">
-    <link rel="stylesheet" href="pages/index.css">
 </head>
 
 <body>
     <div class="page">
         <div class="popup" id="popup-profile">
             <form class="form" id="form-profile">
-                <img src="./images/CloseIcon.png" alt="close icon" class="popup__close">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
                 <h2 class="form__title">Editar Perfil</h2>
                 <input 
                 type="text" 
@@ -24,7 +23,7 @@
                 maxlength="40" 
                 class="form__input" 
                 id="name" 
-                placeholder="Jacques Cousteau"
+                value="Jacques Cousteau"
                 required/>
                 <span class="form__input-error" id="name-error"></span>
                 <input 
@@ -34,7 +33,7 @@
                 maxlength="200" 
                 class="form__input" 
                 id="aboutme" 
-                placeholder="Explorador"
+                value="Explorador"
                 required/>
                 <span class="form__input-error" id="aboutme-error"></span>
                 <button class="form__submit" type="submit">Guardar</button>
@@ -42,7 +41,7 @@
         </div>
         <div class="popup" id="popup-card">
             <form class="form" id="form-card">
-                <img src="./images/CloseIcon.png" alt="close icon" class="popup__close">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
                 <h2 class="form__title">Nuevo Lugar</h2>
                 <input 
                 type="text" 
@@ -68,24 +67,24 @@
         </div>
         <div class="popup" id="popup-image">
             <div class="popup__container">
-                <img src="./images/CloseIcon.png" alt="close icon" class="popup__close" id="close-image">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close" id="close-image">
                 <img src="" alt="" class="popup__photo">
                 <h3 class="popup__photo-title"></h3>
             </div>
         </div>
         <header class="header">
-            <img src="images/Vector.png" alt="logo around USA" class="header__logo">
+            <img src="<%=require('./images/Vector.png')%>" alt="logo around USA" class="header__logo">
         </header>
         <main class="content">
             <section class="profile">
-                <img src="images/imageavatar.png" alt="profile photo" class="profile__photo">
+                <img src="<%=require('./images/imageavatar.png')%>" alt="profile photo" class="profile__photo">
                 <h1 class="profile__title">Jacques Cousteau</h1>
                 <button class="profile__button">
-                    <img src="images/EditButton.png" alt="edit button" class="profile__button profile__button_edit">
+                    <img src="<%=require('./images/EditButton.png')%>" alt="edit button" class="profile__button profile__button_edit">
                 </button>
                 <h2 class="profile__subtitle">Explorador</h2>
                 <button class="profile__button-add">
-                    <img src="images/AddButton.png" alt="button add card"
+                    <img src="<%=require('./images/AddButton.png')%>" alt="button add card"
                         class="profile__button-add profile__button-add_card">
                 </button>
             </section>
@@ -104,7 +103,6 @@
             <button class="card__button-love"></button>
         </div>
     </template>
-    <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
