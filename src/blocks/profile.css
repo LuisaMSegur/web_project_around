@@ -8,11 +8,43 @@
         "photo subtitle . . .";
 }
 
+.profile__container-photo {
+    border-radius: 60px;
+    width: 120px;
+    height: 120px;
+    grid-area: photo;
+    position: relative;
+}
 .profile__photo {
     border-radius: 60px;
     width: 120px;
     height: 120px;
     grid-area: photo;
+    transition: opacity 0.3s; 
+}
+
+
+.profile__photo_edit {
+    width: 35px;
+    height: 35px;
+    background-image: url("/src/images/editavatar.png");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.profile__container-photo:hover .profile__photo {
+    opacity: 0.3; 
+}
+
+.profile__container-photo:hover .profile__photo_edit {
+    opacity: 1; 
 }
 
 .profile__title {

@@ -6,10 +6,10 @@ constructor(popupSelector, handleFormSubmit){
     this.formElement = this.popupElement.querySelector(".form");
     this.inputList = this.formElement.querySelectorAll(".form__input");
     this.handleFormSubmit = handleFormSubmit;  
-    this.buttonSubmit = this.popupElement.querySelector(".form__submit")
+    this.buttonSubmit = this.formElement.querySelector(".form__submit");
 }
 
- _getInputValues(){
+ getInputValues(){
  this.formValues = {};
  this.inputList.forEach((input)=>{
      this.formValues[input.name] = input.value;
@@ -21,10 +21,13 @@ constructor(popupSelector, handleFormSubmit){
 setEventListeners(){
     super.setEventListeners();
 
-    this.popupElement.querySelector(".form").addEventListener("submit", (evt)=>{
+    this.formElement.addEventListener("submit", (evt)=>{
         evt.preventDefault();
-        this.handleFormSubmit(this._getInputValues());
+        this.handleFormSubmit(this.getInputValues());
         this.closePopup();
+    });
+    this.buttonSubmit.addEventListener("click", ()=>{
+        this.buttonSubmit.textContent = "Cargando...";
     });
  }
 

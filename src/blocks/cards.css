@@ -62,7 +62,7 @@
     height: 25px;
     background-image: url("../images/corazonblanco.jpg");
     position: absolute;
-    bottom: 15px;
+    bottom: 40px;
     right: 20px;
     border: 0;
     background-repeat: round;
@@ -80,6 +80,15 @@
     background-image: url("../images/corazonnegro.jpg");
 }
 
+.card__like {
+    color: #000;
+    background-color: white;
+    margin: 8px;
+    display: flex;
+    justify-content: end;
+    font-size: 16px;
+    padding: 0 20px 8px;
+}
 
 @media screen and (min-width:650px) and (max-width:1000px) {
 

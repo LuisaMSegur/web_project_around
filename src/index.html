@@ -16,60 +16,55 @@
             <form class="form" id="form-profile">
                 <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
                 <h2 class="form__title">Editar Perfil</h2>
-                <input 
-                type="text" 
-                name="name"
-                minlength="2"
-                maxlength="40" 
-                class="form__input" 
-                id="name" 
-                value="Jacques Cousteau"
-                required/>
+                <input type="text" name="name" minlength="2" maxlength="40" class="form__input" id="name"
+                    value="Jacques Cousteau" required />
                 <span class="form__input-error" id="name-error"></span>
-                <input 
-                type="text" 
-                name="about"
-                minlength="2"
-                maxlength="200" 
-                class="form__input" 
-                id="aboutme" 
-                value="Explorador"
-                required/>
+                <input type="text" name="about" minlength="2" maxlength="200" class="form__input" id="aboutme"
+                    value="Explorador" required />
                 <span class="form__input-error" id="aboutme-error"></span>
                 <button class="form__submit" type="submit">Guardar</button>
+            </form>
+        </div>
+        <div class="popup" id="popup-avatar">
+            <form class="form" id="form-avatar">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
+                <h2 class="form__title">Cambiar foto del perfil</h2>
+                <input type="url" name="avatar" placeholder="Enlace de la imagen" class="form__input" id="input-image"
+                    required />
+                <span class="form__input-error" id="input-image-error"></span>
+                <button class="form__submit" type="submit">Guardar</button>
+                <p class="form__loading">Cargando...</p>
             </form>
         </div>
         <div class="popup" id="popup-card">
             <form class="form" id="form-card">
                 <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
                 <h2 class="form__title">Nuevo Lugar</h2>
-                <input 
-                type="text" 
-                name="title"
-                minlength="2"
-                maxlength="40" 
-                placeholder="Titulo" 
-                class="form__input" 
-                id="input-place"/>
+                <input type="text" name="title" minlength="2" maxlength="40" placeholder="Titulo" class="form__input"
+                    id="input-place" />
                 <span class="form__input-error" id="input-place-error"></span>
 
-                <input 
-                type="url" 
-                name="link" 
-                placeholder="Enlace a la imagen" 
-                class="form__input" 
-                id="input-image"
-                required/>
+                <input type="url" name="link" placeholder="Enlace a la imagen" class="form__input" id="input-image"
+                    required />
                 <span class="form__input-error" id="input-image-error"></span>
 
                 <button class="form__submit" type="submit">Crear</button>
+                <p class="form__loading">Cargando...</p>
             </form>
         </div>
         <div class="popup" id="popup-image">
             <div class="popup__container">
-                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close" id="close-image">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close"
+                    id="close-image">
                 <img src="" alt="" class="popup__photo">
                 <h3 class="popup__photo-title"></h3>
+            </div>
+        </div>
+        <div class="popup" id="popup-deleteCard">
+            <div class="form">
+                <img src="<%=require('./images/CloseIcon.png')%>" alt="close icon" class="popup__close">
+                <h2 class="form__title">¿Estás seguro/a?</h2>
+                <button class="form__submit" id="buttonConfirmation">Sí</button>
             </div>
         </div>
         <header class="header">
@@ -77,12 +72,16 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img src="<%=require('./images/imageavatar.png')%>" alt="profile photo" class="profile__photo">
-                <h1 class="profile__title">Jacques Cousteau</h1>
+                <div class="profile__container-photo">
+                    <img src="" alt="profile photo" class="profile__photo" id="avatar">
+                <button class="profile__photo profile__photo_edit"></button>
+                </div>
+                <h1 class="profile__title"></h1>
                 <button class="profile__button">
-                    <img src="<%=require('./images/EditButton.png')%>" alt="edit button" class="profile__button profile__button_edit">
+                    <img src="<%=require('./images/EditButton.png')%>" alt="edit button"
+                        class="profile__button profile__button_edit">
                 </button>
-                <h2 class="profile__subtitle">Explorador</h2>
+                <h2 class="profile__subtitle"></h2>
                 <button class="profile__button-add">
                     <img src="<%=require('./images/AddButton.png')%>" alt="button add card"
                         class="profile__button-add profile__button-add_card">
@@ -96,11 +95,11 @@
     </div>
     <template id="card-template">
         <div class="card">
-            <img class="card__photo"
-                src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" />
-            <button class="card__button-trash"></button>
-            <p class="card__name-place">Valle de Yosemite</p>
+            <img class="card__photo" src="" />
+            <button class="card__button-trash" id="buttonDelete" type="button"></button>
+            <p class="card__name-place"></p>
             <button class="card__button-love"></button>
+            <div class="card__like"></div>
         </div>
     </template>
 </body>

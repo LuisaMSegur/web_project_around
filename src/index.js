@@ -1,87 +1,184 @@
 import "./styles/index.css";
 import Card from "./scripts/Card.js";
 import FormValidator from "./scripts/FormValidator.js";
-import { initialCards, settings } from "./scripts/utils.js";
+import {
+    settings,
+    formProfile,
+    textTitleProfile,
+    textSubtitleProfile,
+    avatar,
+    formEditAvatar,
+    formAddCard,
+    buttonEditProfile,
+    buttonAddCard,
+    buttonEditAvatar,
+} from "./scripts/utils.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import UserInfo from "./scripts/UserInfo.js";
 import Section from "./scripts/Section.js";
+import Api from "./scripts/api.js";
+import PopupWithConfirmation from "./scripts/PopupWithConfirmation.js";
 
-const formProfile = document.querySelector("#form-profile");
-const textTitleProfile = document.querySelector(".profile__title");
-const textSubtitleProfile = document.querySelector(".profile__subtitle");
-const inputName = document.querySelector("#name");
-const inputAboutMe = document.querySelector("#aboutme");
-const cardsArea = document.querySelector(".cards");
-const formAddCard = document.querySelector("#form-card");
-const inputNameCard = document.querySelector("#input-place");
-const inputImageCard = document.querySelector("#input-image");
-const buttonEditProfile = document.querySelector(".profile__button");
-const buttonAddCard = document.querySelector(".profile__button-add");
+//instancia de api para el proyecto
 
-//instancia de inicialización de las cartas
+const api = new Api("https://around.nomoreparties.co/v1/web-es-cohort-15", {
+    authorization: "80b5e925-605c-4006-ba50-cc4527fb2e95",
+    "Content-Type": "application/json",
+});
 
-const sectionCards = new Section(
-    {
-        items: initialCards,
-        renderer(item) {
-            const newCard = new Card(item.name, item.link, () => {
-                popupImage.openPopup(item.name, item.link);
-            });
-            cardsArea.append(newCard.setCard());
-        },
-    },
-    cardsArea
-);
-
-sectionCards.renderItems();
-
-//instancia datos del perfil (nombre y profesión)
+//instancia para obtener la información del usuario
 
 const newUserInfo = new UserInfo({
     name: textTitleProfile,
     about: textSubtitleProfile,
+    avatar: avatar,
 });
+api.getUser()
+    .then((data) => {
+        newUserInfo.setUserInfo(data.name, data.about, data.id);
+        newUserInfo.setUserAvatar(data.avatar);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
-newUserInfo.getUserInfo();
-newUserInfo.setUserInfo(inputName.value, inputAboutMe.value);
+//instancias y eventos para editar el perfil (nombre, profesión y avatar)
 
-//instancia del popupWithForm del perfil, eventos del formulario del perfil
-
-const popupProfile = new PopupWithForm("#popup-profile", (data) => {
-    const { name, about } = data;
-    newUserInfo.setUserInfo(name, about);
+const popupProfile = new PopupWithForm("#popup-profile", (inputValues) => {
+    api.editUser(inputValues.name, inputValues.about)
+        .then((data) => {
+            newUserInfo.setUserInfo(data.name, data.about);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
-
+popupProfile.setEventListeners();
 buttonEditProfile.addEventListener("click", () => {
     popupProfile.openPopup();
 });
 
-//instancia de PopupWithForm para agregar cartas
-
-const popupCard = new PopupWithForm("#popup-card", () => {
-    const newCard = new Card(inputNameCard.value, inputImageCard.value, () => {
-        popupImage.openPopup(inputNameCard.value, inputImageCard.value);
-    });
-    cardsArea.prepend(newCard.setCard());
-    popupCard.closePopup();
+const popupAvatar = new PopupWithForm("#popup-avatar", (inputValues) => {
+    api.editAvatar(inputValues.avatar)
+        .then((data) => {
+            newUserInfo.setUserAvatar(data.avatar);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
+popupAvatar.setEventListeners();
+
+buttonEditAvatar.addEventListener("click", () => {
+    popupAvatar.openPopup();
+});
+
+//obtener cartas con la api y agregarlas en la instancia de Section
+
+api.getCards()
+    .then((data) => {
+        sectionCards.items = data;
+        sectionCards.renderItems();
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+const sectionCards = new Section(
+    {
+        items: [],
+        renderer: (item) => {
+            const newCard = new Card(
+                item,
+                () => {
+                    popupImage.openPopup(item.name, item.link);
+                },
+                (cardId) => {
+                    popupDeleteCard.openPopup();
+                    popupDeleteCard.setAction(() => {
+                        api.deleteCard(cardId).then(() => {
+                            newCard.removeCard();
+                            popupDeleteCard.closePopup();
+                        });
+                    });
+                },
+                (cardId, isLiked) => {
+                    if (isLiked) {
+                        api.addLikeCard(cardId).then((updatedCard) => {
+                            newCard.likes = updatedCard.likes;
+                            newCard.showLikes();
+                        });
+                    } else {
+                        api.removeLikeCard(cardId).then((updatedCard) => {
+                            newCard.likes = updatedCard.likes;
+                            newCard.showLikes();
+                        });
+                    }
+                },
+                newUserInfo.userId
+            );
+            sectionCards.addCard(newCard.setCard());
+        },
+    },
+    ".cards"
+);
+
+const popupDeleteCard = new PopupWithConfirmation("#popup-deleteCard");
+popupDeleteCard.setEventListeners();
+
+//instancia para agregar nuevas cartas
+
+const popupCard = new PopupWithForm("#popup-card", (inputValues) => {
+    api.createCard(inputValues.title, inputValues.link).then((data) => {
+        const newCard = new Card(
+            data,
+            () => {
+                popupImage.openPopup(data.name, data.link);
+            },
+            (cardId) => {
+                popupDeleteCard.openPopup();
+                popupDeleteCard.setAction(() => {
+                    api.deleteCard(cardId).then(() => {
+                        newCard.removeCard();
+                        popupDeleteCard.closePopup();
+                    });
+                });
+            },
+            (cardId, isLiked) => {
+                if (isLiked) {
+                    api.addLikeCard(cardId).then((updatedCard) => {
+                        newCard.likes = updatedCard.likes;
+                        newCard.showLikes();
+                    });
+                } else {
+                    api.removeLikeCard(cardId).then((updatedCard) => {
+                        newCard.likes = updatedCard.likes;
+                        newCard.showLikes();
+                    });
+                }
+            },
+            newUserInfo.userId
+        );
+        sectionCards.addCard(newCard.setCard());
+        popupCard.closePopup();
+    });
+});
+
+popupCard.setEventListeners();
 buttonAddCard.addEventListener("click", () => {
     popupCard.openPopup();
 });
 
-//instancia para el popup de la imagen de las cartas
-
 const popupImage = new PopupWithImage("#popup-image");
-
-popupProfile.setEventListeners();
-popupCard.setEventListeners();
 popupImage.setEventListeners();
 
 //instancias del validador de formularios
 
 const validationprofile = new FormValidator(formProfile, settings);
 const validationAddCards = new FormValidator(formAddCard, settings);
+const validationEditAvatar = new FormValidator(formEditAvatar, settings);
 validationprofile.enableValidation();
 validationAddCards.enableValidation();
+validationEditAvatar.enableValidation();
