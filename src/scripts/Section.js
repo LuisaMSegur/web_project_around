@@ -13,7 +13,7 @@ export default class Section{
    
 
     addCard(element){
-        this.container.prepend(element);
+        this.container.append(element);
     }
 }
 

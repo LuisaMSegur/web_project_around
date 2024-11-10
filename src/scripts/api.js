@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
     constructor(baseUrl, headers) {
         this.baseUrl = baseUrl;
         this.headers = headers;
@@ -17,11 +17,13 @@ export default class Api {
     editUser(name, about) {
         return fetch(`${this.baseUrl}/users/me`, {
             method: "PATCH",
-            headers: this.headers,
-            "Content-Type": "application/json",
+            headers: {
+                "Content-Type": "application/json", 
+                ...this.headers, 
+            },
             body: JSON.stringify({
                 name,
-                about,
+                about, 
             }),
         }).then((res) => {
             if (res.ok) return res.json();
@@ -32,9 +34,12 @@ export default class Api {
     editAvatar(link) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: "PATCH",
-            headers: this.headers,
+            headers: {
+                "Content-Type": "application/json", 
+                ...this.headers, 
+            },
             body: JSON.stringify({
-                avatar: link,
+                avatar: link, 
             }),
         }).then((res) => {
             if (res.ok) return res.json();
@@ -55,11 +60,13 @@ export default class Api {
     createCard(name, link) {
         return fetch(`${this.baseUrl}/cards`, {
             method: "POST",
-            headers: this.headers,
-            "Content-Type": "application/json",
+            headers: {
+                ...this.headers,
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
-                name: name,
-                link: link,
+                name,
+                link,
             }),
         }).then((res) => {
             if (res.ok) return res.json();
@@ -77,8 +84,8 @@ export default class Api {
         });
     }
 
-    addLikeCard(cardId) {
-        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+    likeCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
             method: "PUT",
             headers: this.headers,
         }).then((res) => {
@@ -87,8 +94,8 @@ export default class Api {
         });
     }
 
-    removeLikeCard(cardId) {
-        return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+    dislikeCard(cardId) {
+        return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
             method: "DELETE",
             headers: this.headers,
         }).then((res) => {
@@ -96,4 +103,15 @@ export default class Api {
             return Promise.reject(`error en la petición`);
         });
     }
+
+    toggleLike(cardId, isliked) {
+        return isliked ? this.dislikeCard(cardId) : this.likeCard(cardId);
+    }
 }
+
+export const api = new Api(
+    "https://around.nomoreparties.co/v1/web-es-cohort-16",
+    {
+        authorization: "8a4f71dd-3b26-4bfa-a79c-46527c68df13",
+    }
+);

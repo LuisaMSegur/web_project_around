@@ -1,15 +1,23 @@
 const cardTemplate = document.querySelector("#card-template").content;
 
 export default class Card {
-    constructor(data, handleClickImage, handleClickDelete, handleLikeUpdate, userId) {
+    constructor({
+        data,
+        handleClickImage,
+        handleClickDelete,
+        handleLikes,
+        userId,
+    }) {
         this.name = data.name;
         this.link = data.link;
-        this._id = data._id;
-        this.likes = Array.isArray(data.likes) ? data.likes : [];
+        this.owner = data.owner;
+        this.likes = data.likes || [];
+        this.isLiked = this.isLikedByUser();
+        this.id = data._id;
         this.userId = userId;
         this.handleClickImage = handleClickImage;
         this.handleClickDelete = handleClickDelete;
-        this.handleLikeUpdate = handleLikeUpdate;
+        this.handleLikes = handleLikes;
         this.setProperties();
     }
 
@@ -22,29 +30,37 @@ export default class Card {
         this.cardImage = this.htmlCard.querySelector(".card__photo");
         this.cardTitle = this.htmlCard.querySelector(".card__name-place");
         this.buttonLikeCard = this.htmlCard.querySelector(".card__button-love");
-        this.buttonDeleteCard = this.htmlCard.querySelector(".card__button-trash");
-        this.cardLikes = this.htmlCard.querySelector(".card__like")
+        this.buttonDeleteCard = this.htmlCard.querySelector(
+            ".card__button-trash"
+        );
+        this.counterLikes = this.htmlCard.querySelector(".card__like");
         this.cardTitle.textContent = this.name;
         this.cardImage.src = this.link;
-        this.showLikes();
-    }
+        this.counterLikes.textContent = this.likes.length;
+        this.updateLikeButton();
 
-    showLikes() {
-        this.cardLikes.textContent = this.likes.length; 
-        this.buttonLikeCard.classList.toggle("card__button-love_active", this.likes.includes(this.userId));
-    }
-
-    handleLikes() {
-        const isLiked = this.likes.includes(this.userId);
-        if (isLiked) {
-            this.likes = this.likes.filter(id => id !== this.userId);
-            this.handleLikeUpdate(this._id, false);
+        if (this.owner._id === this.userId) {
+            this.buttonDeleteCard.style.display = "block";  
         } else {
-            this.likes.push(this.userId);
-            this.handleLikeUpdate(this._id, true);
+            this.buttonDeleteCard.style.display = "none";  
         }
+    }
 
-        this.showLikes(); 
+    isLikedByUser() { 
+        const likedByUser = this.likes.some((like) => like._id === this.userId);
+        return likedByUser;
+    }
+
+    toggleLike(likes) {
+        this.likes = likes;
+        this.isLiked = this.isLikedByUser();
+        this.counterLikes.textContent = likes.length;
+        this.updateLikeButton();
+    }
+
+    updateLikeButton() {
+        this.isLiked = this.isLikedByUser();
+        this.buttonLikeCard.classList.toggle("card__button-love_active", this.isLiked);
     }
 
     removeCard() {
@@ -56,10 +72,14 @@ export default class Card {
             this.handleClickImage();
         });
         this.buttonDeleteCard.addEventListener("click", () => {
-            this.handleClickDelete(this._id);
+            this.handleClickDelete(this.id);
         });
         this.buttonLikeCard.addEventListener("click", () => {
-            this.handleLikes();
+            this.handleLikes(this.id, this.isLiked)
+    .then((res) => {
+        this.toggleLike(res.likes); 
+    })
+    .catch((err) => console.error("Error al hacer toggleLike:", err));
         });
     }
 

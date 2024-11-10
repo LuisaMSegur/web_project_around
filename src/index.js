@@ -17,15 +17,8 @@ import PopupWithForm from "./scripts/PopupWithForm.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import UserInfo from "./scripts/UserInfo.js";
 import Section from "./scripts/Section.js";
-import Api from "./scripts/api.js";
+import { api } from "./scripts/api.js";
 import PopupWithConfirmation from "./scripts/PopupWithConfirmation.js";
-
-//instancia de api para el proyecto
-
-const api = new Api("https://around.nomoreparties.co/v1/web-es-cohort-15", {
-    authorization: "80b5e925-605c-4006-ba50-cc4527fb2e95",
-    "Content-Type": "application/json",
-});
 
 //instancia para obtener la información del usuario
 
@@ -34,9 +27,10 @@ const newUserInfo = new UserInfo({
     about: textSubtitleProfile,
     avatar: avatar,
 });
+
 api.getUser()
     .then((data) => {
-        newUserInfo.setUserInfo(data.name, data.about, data.id);
+        newUserInfo.setUserInfo(data.name, data.about, data._id);
         newUserInfo.setUserAvatar(data.avatar);
     })
     .catch((err) => {
@@ -90,12 +84,12 @@ const sectionCards = new Section(
     {
         items: [],
         renderer: (item) => {
-            const newCard = new Card(
-                item,
-                () => {
-                    popupImage.openPopup(item.name, item.link);
+            const newCard = new Card({
+                data: item,
+                handleClickImage: () => {
+                    popupImage.openPopup({ name: item.name, link: item.link });
                 },
-                (cardId) => {
+                handleClickDelete: (cardId) => {
                     popupDeleteCard.openPopup();
                     popupDeleteCard.setAction(() => {
                         api.deleteCard(cardId).then(() => {
@@ -104,67 +98,55 @@ const sectionCards = new Section(
                         });
                     });
                 },
-                (cardId, isLiked) => {
-                    if (isLiked) {
-                        api.addLikeCard(cardId).then((updatedCard) => {
-                            newCard.likes = updatedCard.likes;
-                            newCard.showLikes();
-                        });
-                    } else {
-                        api.removeLikeCard(cardId).then((updatedCard) => {
-                            newCard.likes = updatedCard.likes;
-                            newCard.showLikes();
-                        });
-                    }
+                handleLikes: (cardId, isLiked) => {
+                    return api.toggleLike(cardId, isLiked).then((res)=>{
+                        newCard.toggleLike(res.likes);
+                        return res;
+                    });
                 },
-                newUserInfo.userId
-            );
+                userId: newUserInfo.userId,
+            });
             sectionCards.addCard(newCard.setCard());
         },
     },
     ".cards"
 );
 
-const popupDeleteCard = new PopupWithConfirmation("#popup-deleteCard");
-popupDeleteCard.setEventListeners();
-
-//instancia para agregar nuevas cartas
+//instancia de creación de cartas con formulario
 
 const popupCard = new PopupWithForm("#popup-card", (inputValues) => {
-    api.createCard(inputValues.title, inputValues.link).then((data) => {
-        const newCard = new Card(
-            data,
-            () => {
-                popupImage.openPopup(data.name, data.link);
-            },
-            (cardId) => {
-                popupDeleteCard.openPopup();
-                popupDeleteCard.setAction(() => {
-                    api.deleteCard(cardId).then(() => {
-                        newCard.removeCard();
-                        popupDeleteCard.closePopup();
+    api.createCard(inputValues.title, inputValues.link)
+        .then((data) => {
+            const newCard = new Card({
+                data: data,
+                handleClickImage: () => {
+                    popupImage.openPopup(data.name, data.link);
+                },
+                handleClickDelete: (id) => {
+                    popupDeleteCard.openPopup();
+                    popupDeleteCard.setAction(() => {
+                        api.deleteCard(id).then(() => {
+                            newCard.removeCard();
+                            popupDeleteCard.closePopup();
+                        });
                     });
-                });
-            },
-            (cardId, isLiked) => {
-                if (isLiked) {
-                    api.addLikeCard(cardId).then((updatedCard) => {
-                        newCard.likes = updatedCard.likes;
-                        newCard.showLikes();
+                },
+                handleLikes: (id, isLiked) => {
+                    return api.toggleLike(id, isLiked).then((res)=>{
+                        newCard.toggleLike(res.likes);
+                        return res;
                     });
-                } else {
-                    api.removeLikeCard(cardId).then((updatedCard) => {
-                        newCard.likes = updatedCard.likes;
-                        newCard.showLikes();
-                    });
-                }
-            },
-            newUserInfo.userId
-        );
-        sectionCards.addCard(newCard.setCard());
-        popupCard.closePopup();
-    });
+                },
+                userId: newUserInfo.userId,
+            });
+            sectionCards.addCard(newCard.setCard());
+            popupCard.closePopup();
+        })
+        .catch(() => console.log("error al crear carta"));
 });
+
+const popupDeleteCard = new PopupWithConfirmation("#popup-deleteCard");
+popupDeleteCard.setEventListeners();
 
 popupCard.setEventListeners();
 buttonAddCard.addEventListener("click", () => {

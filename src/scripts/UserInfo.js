@@ -3,17 +3,20 @@ export default class UserInfo {
         this.name = name;
         this.about = about;
         this.avatar = avatar;
+        this.userId = null;
     }
     getUserInfo() {
         return {
             name: this.name.textContent,
             about: this.about.textContent,
             avatar: this.avatar.src,
+            userId: this.userId,
         };
     }
-    setUserInfo(inputName, inputAbout) {
+    setUserInfo(inputName, inputAbout, userId) {
         this.name.textContent = inputName;
         this.about.textContent = inputAbout;
+        this.userId = userId;
         
     }
 
