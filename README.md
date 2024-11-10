@@ -2,16 +2,17 @@
 
 DESCRIPCIÓN:
 Alrededor del mundo, página para agregar tarjetas con fotos de cualquier parte del mundo y su nombre correspondiente, se puede eliminar o darle like a tus tarjetas o las de otros usuarios. Ademas cada usuario puede modificar el perfil con sus datos (nombre, profesión y avatar).
-![como se ve la pagina](./src/images/readme/Proyecto%20Around.png)
+![como se ve la pagina](./src/images/Proyecto%20Around.png)
 
 HERRAMIENTAS utilizadas en todo el proyecto:
 
 -HTML: documento principal
-![estructura general del documento](./src/images/readme/image.png)
+![estructura general del documento](./src/images/image.png)
 
 -CSS: para dar estilo a la pagina en general, a los popups y tarjetas
+![estructura general del documento](./src/images/popups.png)
 -JAVASCRIPT: funcionalidad para crear cartas, eliminarlas, boton de like/dislike, abrir/cerrar ventanas modales, modificar perfil, etc.
-![estructura general del documento](./src/images/readme/javascript.png)
+![estructura general del documento](./src/images/javascript.png)
 
 -WEBPACK: empaquetador de módulos que me ayudó a gestionar y optimizar los recursos de mi proyecto (JavaScript, CSS, imágenes, etc.). Su objetivo es transformar y agrupar los archivos y dependencias en un solo archivo (o pocos archivos) para mejorar el rendimiento en producción.
 
